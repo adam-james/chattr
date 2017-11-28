@@ -6,7 +6,7 @@ defmodule Chattr.Accounts do
   import Ecto.Query, warn: false
   alias Chattr.Repo
 
-  alias Chattr.Accounts.User
+  alias Chattr.Accounts.{User, Credential}
 
   @doc """
   Returns the list of users.
@@ -36,7 +36,9 @@ defmodule Chattr.Accounts do
 
   """
   def get_user!(id) do
-    Repo.get! User, id
+    User
+    |> Repo.get!(id)
+    |> Repo.preload(:credential)
   end
 
   @doc """
@@ -54,6 +56,7 @@ defmodule Chattr.Accounts do
   def create_user(attrs \\ %{}) do
     %User{}
     |> User.changeset(attrs)
+    |> Ecto.Changeset.cast_assoc(:credential, with: &Credential.changeset/2)
     |> Repo.insert()
   end
 
@@ -72,6 +75,7 @@ defmodule Chattr.Accounts do
   def update_user(%User{} = user, attrs) do
     user
     |> User.changeset(attrs)
+    |> Ecto.Changeset.cast_assoc(:credential, with: &Credential.changeset/2)    
     |> Repo.update()
   end
 
