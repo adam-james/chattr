@@ -107,4 +107,28 @@ defmodule Chattr.Accounts do
   def change_user(%User{} = user) do
     User.changeset(user, %{})
   end
+
+  @doc """
+  Authenticates user with password and email.
+
+  ## Examples
+
+    iex> authenticate_by_email_password(good_email, _password)
+    {:ok, user}
+
+    iex> authenticate_by_email_password(bad_email, _password)
+    {:error, :unauthorized}
+
+  """
+  def authenticate_by_email_password(email, _password) do
+    query =
+      from u in User,
+        inner_join: c in assoc(u, :credential),
+        where: c.email == ^email
+
+    case Repo.one(query) do
+      %User{} = user -> {:ok, user}
+      nil -> {:error, :unauthorized}
+    end
+  end
 end
