@@ -23,9 +23,9 @@ defmodule Chattr.AccountsTest do
       user = user_fixture()
       users = Accounts.list_users()
       assert length(users) == 1
-      [h|t] = users
-      assert h.username == user.username
-      assert Accounts.get_user!(h.id) == user
+      [head|_tail] = users
+      assert head.username == user.username
+      assert Accounts.get_user!(head.id) == user
     end
 
     test "get_user!/1 returns the user with the given id" do
