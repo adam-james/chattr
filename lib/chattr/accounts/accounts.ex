@@ -35,6 +35,7 @@ defmodule Chattr.Accounts do
       ** (Ecto.NoResultsError)
 
   """
+  # TODO: create get_user_with_credential!/1 to replace this in controller
   def get_user!(id) do
     User
     |> Repo.get!(id)
