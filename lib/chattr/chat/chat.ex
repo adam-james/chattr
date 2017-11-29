@@ -7,6 +7,7 @@ defmodule Chattr.Chat do
   alias Chattr.Repo
 
   alias Chattr.Chat.Topic
+  alias Chattr.Accounts.User
 
   @doc """
   Returns a list of topics.
@@ -22,7 +23,7 @@ defmodule Chattr.Chat do
   end
 
   @doc """
-  Gets a single topic.
+  Gets a single topic. Preloads the user.
 
   Raises `Ecto.NoResultsError` if the Topic does not exist.
 
@@ -36,7 +37,9 @@ defmodule Chattr.Chat do
 
   """
   def get_topic!(id) do
-    Repo.get! Topic, id
+    Topic
+    |> Repo.get!(id)
+    |> Repo.preload(:user)
   end
 
   @doc """
@@ -44,16 +47,17 @@ defmodule Chattr.Chat do
 
   ## Examples
 
-      iex> create_topic(%{field: value})
+      iex> create_topic(%User{}, %{field: value})
       {:ok, %Topic{}}
 
-      iex> create_topic(%{field: bad_value})
+      iex> create_topic(%User{}, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_topic(attrs \\ %{}) do
+  def create_topic(%User{} = user, attrs \\ %{}) do
     %Topic{}
     |> Topic.changeset(attrs)
+    |> Ecto.Changeset.put_change(:user_id, user.id)
     |> Repo.insert()
   end
 

@@ -2,6 +2,8 @@ defmodule Chattr.ChatTest do
   use Chattr.DataCase
   
   alias Chattr.Chat
+  alias Chattr.Accounts
+  alias Chattr.Repo
 
   describe "topics" do
     alias Chattr.Chat.Topic
@@ -9,14 +11,22 @@ defmodule Chattr.ChatTest do
     @valid_attrs %{title: "some title", description: "some description"}
     @update_attrs %{title: "some updated title"}
     @invalid_attrs %{title: nil}
+    @user_attrs %{username: "some username", credential: %{email: "someemail@test.com"}}
 
     def topic_fixture(attrs \\ %{}) do
-      {:ok, topic} =
-        attrs
-        |> Enum.into(@valid_attrs)
-        |> Chat.create_topic()
-
+      attrs = Enum.into attrs, @valid_attrs
+      user = user_fixture()
+      {:ok, topic} = Chat.create_topic user, attrs
       topic
+    end
+
+    def user_fixture(attrs \\ %{}) do
+      {:ok, user} =
+        attrs
+        |> Enum.into(@user_attrs)
+        |> Accounts.create_user()
+
+      user
     end
 
     test "list_topics/0 returns all topics" do
@@ -25,19 +35,21 @@ defmodule Chattr.ChatTest do
       assert topics == [topic]
     end
 
-    test "get_topic!/1 returns the topic with the given id" do
-      topic = topic_fixture()
+    test "get_topic!/1 returns the topic with the given id and user preloaded" do
+      topic = topic_fixture() |> Repo.preload(:user)
       assert Chat.get_topic!(topic.id) == topic
     end
 
-    test "create_topic/1 with valid data creates topic" do
-      assert {:ok, topic} = Chat.create_topic @valid_attrs
+    test "create_topic/1 with valid data and user creates topic" do
+      user = user_fixture()
+      assert {:ok, topic} = Chat.create_topic user, @valid_attrs
       assert topic.title == "some title"
       assert topic.description == "some description"
     end
 
     test "create_topic/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Chat.create_topic @invalid_attrs
+      user = user_fixture()
+      assert {:error, %Ecto.Changeset{}} = Chat.create_topic user, @invalid_attrs
     end
 
     test "update_topic/2 with valid data updates the topic" do
