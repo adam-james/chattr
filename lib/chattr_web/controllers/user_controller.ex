@@ -26,18 +26,18 @@ defmodule ChattrWeb.UserController do
   end
 
   def show(conn, %{"id" => id}) do
-    user = Accounts.get_user! id
+    user = Accounts.get_user_with_credential! id
     render conn, "show.html", user: user
   end
 
   def edit(conn, %{"id" => id}) do
-    user = Accounts.get_user! id
+    user = Accounts.get_user_with_credential! id
     changeset = Accounts.change_user(user)
     render conn, "edit.html", user: user, changeset: changeset
   end
 
   def update(conn, %{"id" => id, "user" => user_params}) do
-    user = Accounts.get_user! id
+    user = Accounts.get_user_with_credential! id
 
     case Accounts.update_user(user, user_params) do
       {:ok, user} ->

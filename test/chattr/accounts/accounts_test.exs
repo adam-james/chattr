@@ -25,12 +25,22 @@ defmodule Chattr.AccountsTest do
       assert length(users) == 1
       [head|_tail] = users
       assert head.username == user.username
-      assert Accounts.get_user!(head.id) == user
+      assert Accounts.get_user_with_credential!(head.id) == user
     end
 
     test "get_user!/1 returns the user with the given id" do
       user = user_fixture()
-      assert Accounts.get_user!(user.id) == user
+      found = Accounts.get_user!(user.id)
+      assert found.username == user.username
+      assert found.id == user.id
+      assert found.inserted_at == user.inserted_at
+      assert found.updated_at == user.updated_at
+    end
+
+    test "get_user_with_credential!/1 returns the user with credential" do
+      user = user_fixture()
+      found = Accounts.get_user_with_credential!(user.id)
+      assert found == user
     end
 
     test "create_user/1 with valid data creates user" do
@@ -53,7 +63,7 @@ defmodule Chattr.AccountsTest do
     test "update_user/2 with invalid data returns error changeset" do
       user = user_fixture()
       assert {:error, %Ecto.Changeset{}} = Accounts.update_user(user, @invalid_attrs)
-      assert user == Accounts.get_user!(user.id)
+      assert user == Accounts.get_user_with_credential!(user.id)
     end
 
     test "delete_user/1 deletes the user" do

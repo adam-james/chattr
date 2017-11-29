@@ -22,24 +22,40 @@ defmodule Chattr.Accounts do
   end
 
   @doc """
-  Gets a single user.
+  Gets a single user. Preloads credential.
 
-  Raises `Ecot.NoResultsError` if the User does not exist.
+  Raises `Ecto.NoResultsError` if the User does not exist.
 
   ## Examples
 
-      iex> get_user!(123)
+      iex> get_user_with_credential!(123)
+      %User{}
+
+      iex> get_user_with_credential!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_user_with_credential!(id) do
+    User
+    |> Repo.get!(id)
+    |> Repo.preload(:credential)
+  end
+
+  @doc """
+  Gets a single user.
+
+  Raises `Ecto.NoResultsError` is User does not exist.
+
+  ## Examples
+
+      iex> get_user_!(123)
       %User{}
 
       iex> get_user!(456)
       ** (Ecto.NoResultsError)
-
   """
-  # TODO: create get_user_with_credential!/1 to replace this in controller
   def get_user!(id) do
-    User
-    |> Repo.get!(id)
-    |> Repo.preload(:credential)
+    Repo.get! User, id
   end
 
   @doc """
