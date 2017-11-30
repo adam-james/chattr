@@ -39,5 +39,4 @@ defmodule ChattrWeb.Router do
         assign(conn, :current_user, Chattr.Accounts.get_user!(user_id))
     end
   end
-
 end

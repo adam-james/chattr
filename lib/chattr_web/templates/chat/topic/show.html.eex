@@ -1,0 +1,7 @@
+<h2><%= @topic.title %></h2>
+<p><%= @topic.description %></p>
+<p>Created by: <%= owner_name(@topic) %></p>
+<div id="topic-id" data-topic-id="<%= @topic.id %>"><%= @topic.id %></div>
+
+<span><%= link "Edit", to: chat_topic_path(@conn, :edit, @topic) %></span> |
+<span><%= link "Back", to: chat_topic_path(@conn, :index) %></span>
