@@ -124,18 +124,6 @@ defmodule ChattrWeb.Chat.TopicControllerTest do
       assert html_response(conn, 200) =~ "Edit Topic"
     end
 
-    # TODO: move these reject cases to another describe block
-    test "edit rejects non-owner user", %{conn: conn, user: user} do
-      {:ok, other_user} = Accounts.create_user(%{
-        username: "other user",
-        credential: %{email: "otheruser@test.com"}
-      })
-      topic = fixture :user_topic, other_user
-      conn  = get conn, chat_topic_path(conn, :edit, topic)
-      assert redirected_to(conn) == chat_topic_path(conn, :index)
-      assert get_flash(conn, :error) == "You can't modify that topic."
-    end
-
     test "update updates topics when data valid", %{conn: conn, user: user} do
       topic = fixture :user_topic, user
       conn  = put conn, chat_topic_path(conn, :update, topic), topic: @update_attrs
