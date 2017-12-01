@@ -13,12 +13,12 @@
   </head>
 
   <body>
+    <header class="GlobalHeader">
+      <h1 class="GlobalHeader__brand">
+        <a href="/" class="GlobalHeader__brand-link">Chattr</a>
+      </h1>
+    </header>
     <div class="container">
-      <header class="GlobalHeader">
-        <h1 class="GlobalHeader__brand">
-          <a href="/" class="GlobalHeader__brand-link">Chattr</a>
-        </h1>
-      </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>

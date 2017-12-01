@@ -2,6 +2,8 @@
 
 @import "_scss/normalize";
 
+.container{padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}@media (min-width:768px){.container{width:750px}}@media (min-width:992px){.container{width:970px}}@media (min-width:1200px){.container{width:1170px}}.container-fluid{padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}
+
 $color-primary: #866CFF;
 $color-text:    #181818;
 $color-white:   #fff;
@@ -100,7 +102,7 @@ body {
 }
 
 .AccountForm {
-  padding: 0 2em;
+  padding: 0 1em;
 
   &__form-group {
     margin-bottom: 0.75em;
