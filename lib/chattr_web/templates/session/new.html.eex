@@ -1,23 +1,27 @@
-<h2>Sign in</h2>
+<h2 class="Account__heading">Sign in</h2>
 
-<%= form_for @conn, session_path(@conn, :create), [method: :post, as: :user], fn f -> %>
-  <div class="form-group">
-    <%= label f, :email, class: "control-label" %>
-    <%= text_input f, :email, class: "form-control" %>
+<%= form_for @conn, session_path(@conn, :create), [method: :post, as: :user, class: "AccountForm"], fn f -> %>
+  <div class="AccountForm__form-group">
+    <%= label f, :email, class: "AccountForm__label" %>
+    <%= text_input f, :email, class: "AccountForm__input" %>
   </div>
 
-  <div class="form-group">
-    <%= label f, :password, class: "control-label" %>
-    <%= password_input f, :password, class: "form-control" %>
+  <div class="AccountForm__form-group">
+    <%= label f, :password, class: "AccountForm__label" %>
+    <%= password_input f, :password, class: "AccountForm__input" %>
   </div>
 
-  <div class="form-group">
-    <%= submit "Log In", class: "btn btn-primary" %>
+  <div class="AccountForm__form-group">
+    <%= submit "Log In", class: "AccountForm__submit" %>
   </div>
 <% end %>
 
+<p class="Account__signup-callout">
+  Don't have an account? <%= link "Sign up", to: user_path(@conn, :new), class: "Account__signup-link" %>
+</p>
+
 <%= form_for @conn, session_path(@conn, :delete), [method: :delete, as: :user], fn _ -> %>
-  <div class="form-group">
+  <div class="AccountForm__form-group">
     <%= submit "Log Out", class: "btn btn-warning" %>
   </div>
 <% end %>

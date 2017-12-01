@@ -14,6 +14,12 @@ defmodule ChattrWeb.ErrorHelpers do
     end)
   end
 
+  def error_tag(form, field, classname) do
+    Enum.map(Keyword.get_values(form.errors, field), fn (error) ->
+      content_tag :div, translate_error(error), class: classname
+    end)
+  end
+
   @doc """
   Translates an error message using gettext.
   """

@@ -6,8 +6,8 @@ $color-primary: #866CFF;
 $color-text:    #181818;
 $color-white:   #fff;
 $color-gray:    #A6A6A6;
+$color-alert:   #D81616;
 $font-stack:      'Lato', sans-serif;
-
 
 body {
   font-family: $font-stack;
@@ -46,6 +46,10 @@ body {
   font-weight: 300;
 }
 
+@mixin link() {
+  color: $color-primary;
+}
+
 .LandingCallout {
   text-align: center;
   padding-top: 2em;
@@ -76,7 +80,7 @@ body {
   }
 }
 
-.Signup {
+.Account {
 
   &__heading {
     text-align: center;
@@ -85,17 +89,17 @@ body {
     margin-bottom: 1.5em;
   }
 
-  &__login-callout {
+  &__login-callout, &__signup-callout {
     text-align: center;
     margin-top: 2em;
   }
 
-  &__login-link {
-    color: $color-primary;
+  &__login-link, &__signup-link {
+    @include link();
   }
 }
 
-.SignupForm {
+.AccountForm {
   padding: 0 2em;
 
   &__form-group {
@@ -124,5 +128,21 @@ body {
     background-color: $color-primary;
     color: $color-white;
     margin-top: 1em;
+  }
+
+  &__global-alert {
+    border: 1px solid $color-alert;
+    color: $color-alert;
+    padding: 0 1em;
+    margin-bottom: 0.5em;
+    border-radius: 2px;
+  }
+
+  &__alert {
+    border: 1px solid $color-alert;
+    color: $color-alert;
+    padding: 0.5em 1em;
+    margin-top: 0.5em;
+    border-radius: 2px;    
   }
 }
