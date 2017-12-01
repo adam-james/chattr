@@ -1,0 +1,71 @@
+/* This file is for your main application css. */
+
+@import "_scss/normalize";
+
+$color-primary: #866CFF;
+$color-text:    #181818;
+$color-white:   #fff;
+$font-stack:      'Lato', sans-serif;
+
+
+body {
+  font-family: $font-stack;
+  font-size: 16px;
+  color: $color-text;
+}
+
+.GlobalHeader {
+
+  background-color: $color-primary;
+  color: $color-white;
+  text-align: center;
+  padding-top: 0.5em;
+  padding-bottom: 0.75em;
+
+  &__brand {
+    margin: 0;
+    font-weight: 300;
+    font-size: 1.5rem;
+  }
+}
+
+@mixin landingButton() {
+  padding-top: 0.5em;
+  padding-bottom: 0.75em;
+  text-decoration: none;
+  width: 70%;
+  margin: 0 auto;
+  display: block;
+  border-radius: 100px;
+  font-weight: 300;
+}
+
+.LandingCallout {
+  text-align: center;
+  padding-top: 2em;
+
+  &__welcome-message {
+    font-weight: 400;
+    font-size: 1.5rem;
+  }
+
+  &__lead {
+    margin-bottom: 2em;
+  }
+
+  &__signup-link {
+    @include landingButton();    
+
+    margin-bottom: 1em;
+    color: $color-white;
+    background-color: $color-primary;
+    border: 1px solid $color-primary;
+  }
+
+  &__login-link {
+    @include landingButton();
+
+    color: $color-primary;
+    border: 1px solid $color-primary;
+  }
+}

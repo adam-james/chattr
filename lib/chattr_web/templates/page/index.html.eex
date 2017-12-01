@@ -1,5 +1,6 @@
-<div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}!", name: "Chattr" %></h2>
-  <p class="lead">A place to chat with your friends.</p>
-  <%= link "Log In", to: session_path(@conn, :new) %>
+<div class="LandingCallout">
+  <h2 class="LandingCallout__welcome-message">Welcome to Chattr!</h2>
+  <p class="LandingCallout__lead">A place to discuss things.</p>
+  <%= link "Sign Up", to: user_path(@conn, :new), class: "LandingCallout__signup-link" %>
+  <%= link "Log In", to: session_path(@conn, :new), class: "LandingCallout__login-link" %>
 </div>
