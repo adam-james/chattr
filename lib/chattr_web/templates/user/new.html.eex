@@ -1,5 +1,7 @@
-<h2>New User</h2>
+<h2 class="Signup__heading">Sign Up</h2>
 
 <%= render "form.html", Map.put(assigns, :action, user_path(@conn, :create)) %>
 
-<span><%= link "Back", to: user_path(@conn, :index) %></span>
+<p class="Signup__login-callout">
+  Already have an account? <%= link "Log in", to: session_path(@conn, :new), class: "Signup__login-link" %>
+</p>

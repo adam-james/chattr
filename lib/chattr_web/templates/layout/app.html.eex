@@ -15,7 +15,9 @@
   <body>
     <div class="container">
       <header class="GlobalHeader">
-        <h1 class="GlobalHeader__brand">Chattr</h1>
+        <h1 class="GlobalHeader__brand">
+          <a href="/" class="GlobalHeader__brand-link">Chattr</a>
+        </h1>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

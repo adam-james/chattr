@@ -5,6 +5,7 @@
 $color-primary: #866CFF;
 $color-text:    #181818;
 $color-white:   #fff;
+$color-gray:    #A6A6A6;
 $font-stack:      'Lato', sans-serif;
 
 
@@ -26,6 +27,11 @@ body {
     margin: 0;
     font-weight: 300;
     font-size: 1.5rem;
+  }
+
+  &__brand-link {
+    text-decoration: none;
+    color: $color-white;
   }
 }
 
@@ -67,5 +73,56 @@ body {
 
     color: $color-primary;
     border: 1px solid $color-primary;
+  }
+}
+
+.Signup {
+
+  &__heading {
+    text-align: center;
+    font-weight: 400;
+    margin-top: 2em;
+    margin-bottom: 1.5em;
+  }
+
+  &__login-callout {
+    text-align: center;
+    margin-top: 2em;
+  }
+
+  &__login-link {
+    color: $color-primary;
+  }
+}
+
+.SignupForm {
+  padding: 0 2em;
+
+  &__form-group {
+    margin-bottom: 0.75em;
+  }  
+
+  &__label {
+    display: block;
+    margin-bottom: 0.25em;
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    padding: 0.4em;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid $color-gray;
+  }
+
+  &__submit {
+    @include landingButton();
+
+    width: 100%;
+    border: 1px solid $color-primary;
+    background-color: $color-primary;
+    color: $color-white;
+    margin-top: 1em;
   }
 }
