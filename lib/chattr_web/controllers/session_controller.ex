@@ -14,7 +14,7 @@ defmodule ChattrWeb.SessionController do
         |> put_flash(:info, "Welcome back!")
         |> put_session(:user_id, user.id)
         |> configure_session(renew: true)
-        |> redirect(to: page_path(conn, :index))
+        |> redirect(to: chat_topic_path(conn, :index))
       {:error, :unauthorized} ->
         conn
         |> put_flash(:error, "Bad email/password combination")
