@@ -19,7 +19,9 @@ defmodule Chattr.Chat do
 
   """
   def list_topics do
-    Repo.all Topic
+    Topic
+    |> Repo.all()
+    |> Repo.preload(:user)
   end
 
   @doc """

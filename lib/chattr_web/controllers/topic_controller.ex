@@ -7,8 +7,15 @@ defmodule ChattrWeb.Chat.TopicController do
   plug :authorize_topic when action in [:edit, :update, :delete]
 
   def index(conn, _params) do
+    user = conn.assigns.current_user
     topics = Chat.list_topics()
-    render conn, "index.html", topics: topics
+    user_topics = for topic <- topics, user_topic?(user, topic), do: topic
+    other_topics = for topic <- topics, !user_topic?(user, topic), do: topic
+    render conn, "index.html", user_topics: user_topics, other_topics: other_topics
+  end
+
+  defp user_topic?(user, topic) do
+    user.id == topic.user_id
   end
 
   def new(conn, _params) do

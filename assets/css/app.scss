@@ -13,7 +13,7 @@ $font-stack:      'Lato', sans-serif;
 
 body {
   font-family: $font-stack;
-  font-size: 16px;
+  font-size: 18px;
   color: $color-text;
 }
 
@@ -52,7 +52,7 @@ body {
   }
 }
 
-@mixin landingButton() {
+@mixin roundButton() {
   padding-top: 0.5em;
   padding-bottom: 0.75em;
   text-decoration: none;
@@ -61,6 +61,7 @@ body {
   display: block;
   border-radius: 100px;
   font-weight: 300;
+  text-align: center;  
 }
 
 @mixin link() {
@@ -81,7 +82,7 @@ body {
   }
 
   &__signup-link {
-    @include landingButton();    
+    @include roundButton();    
 
     margin-bottom: 1em;
     color: $color-white;
@@ -90,20 +91,24 @@ body {
   }
 
   &__login-link {
-    @include landingButton();
+    @include roundButton();
 
     color: $color-primary;
     border: 1px solid $color-primary;
   }
 }
 
+@mixin centeredHeading() {
+  text-align: center;
+  font-weight: 400;
+  margin-top: 2em;
+  margin-bottom: 1.5em;
+}
+
 .Account {
 
   &__heading {
-    text-align: center;
-    font-weight: 400;
-    margin-top: 2em;
-    margin-bottom: 1.5em;
+    @include centeredHeading();
   }
 
   &__login-callout, &__signup-callout {
@@ -138,7 +143,7 @@ body {
   }
 
   &__submit {
-    @include landingButton();
+    @include roundButton();
 
     width: 100%;
     border: 1px solid $color-primary;
@@ -165,5 +170,57 @@ body {
     padding: 0.5em 1em;
     margin-top: 0.5em;
     border-radius: 2px;    
+  }
+}
+
+.TopicIndex {
+
+  &__heading {
+    @include centeredHeading();
+    
+    margin-top: 1em;
+    margin-bottom: 1em;    
+  }
+
+  &__new-link {
+    @include roundButton();
+
+    background-color: $color-primary;
+    color: $color-white;
+    width: 100%;
+  }
+}
+
+.TopicList {
+
+  list-style: none;
+  padding: 0;
+
+  &__item {
+    border: 1px solid $color-gray;
+    border-radius: 2px;
+    margin-bottom: 1em;
+    text-align: center;
+    box-shadow: 0px 2px 4px $color-gray;
+  }
+
+  &__topic-link {
+    text-decoration: none;
+    padding: 1em;    
+    display: block;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    color: $color-text;
+  }
+
+  &__owner {
+    display: block;
+    @include link();
+    margin-top: 0.25em;
+  }
+
+  &__username {
+    font-weight: 700;
   }
 }

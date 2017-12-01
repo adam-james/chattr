@@ -1,0 +1,14 @@
+<ul class="TopicList">
+  <%= for topic <- @topics do %>
+    <li class="TopicList__item">
+      <a
+        class="TopicList__topic-link"
+        href="<%= chat_topic_path(@conn, :show, topic) %>">
+        <%= topic.title %>
+        <span class="TopicList__owner">
+          Created by <span class="TopicList__username"><%= topic.user.username %></span>
+        </span>
+      </a>
+    </li>
+  <% end %>
+</ul>
