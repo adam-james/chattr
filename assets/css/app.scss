@@ -130,6 +130,10 @@ body {
     margin-top: 1em;
   }
 
+  &__submit:hover {
+    cursor: pointer;
+  }
+
   &__global-alert {
     border: 1px solid $color-alert;
     color: $color-alert;
