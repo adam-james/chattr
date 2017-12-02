@@ -12,7 +12,7 @@
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
 import "phoenix_html"
-import "./socket"
+import { chat } from "./socket"
 
 // Import local files
 //
@@ -30,4 +30,6 @@ function slideUpLead() {
 
 if (window.location.pathname === '/') {
   slideUpLead()
+} else if (/\/chat\/topics\/[0-9]+/.test(location.pathname)) {
+  chat()
 }
