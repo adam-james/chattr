@@ -8,29 +8,51 @@ import {Socket} from "phoenix"
 let socket = new Socket("/socket", {params: {token: window.userToken}})
 
 function getTopicId() {
-  return document.getElementById('topic-id')
-                 .getAttribute('data-topic-id')
+  return document.getElementById("topic-id")
+                 .getAttribute("data-topic-id")
 }
 
 socket.connect()
 
 let channel = socket.channel("topic:" + getTopicId(), {})
-let chatInput = document.getElementById('chat-input')
-let messagesContainer = document.getElementById('messages');
+let chatInput = document.getElementById("chat-input")
+let chatForm = document.getElementById("chat-form")
+let messageList = document.getElementById("message-list")
 
-chatInput.addEventListener('keypress', event => {
-  if (event.keyCode == 13) {
-    channel.push("new_msg", { body: chatInput.value })
-    chatInput.value = ""
-  }
+chatForm.addEventListener("submit", event => {
+  event.preventDefault()
+  channel.push("new_msg", {body: chatInput.value})
+  chatInput.value = ""
 })
 
 channel.on("new_msg", payload => {
-  console.log(payload)
+  renderMessage(payload)
 })
 
+function renderMessage({inserted_at, created_by, body}) {
+  let li = document.createElement("li")
+  li.classList.add("MessageList__item")
+  renderBody(body)
+  renderMeta(inserted_at, created_by)
+  messageList.appendChild(li)
+
+  function renderBody(body) {
+    let p = document.createElement("p")
+    p.classList.add("MessageList__item-body")
+    p.textContent = body
+    li.appendChild(p)
+  }
+
+  function renderMeta(inserted_at, created_by) {
+    let p = document.createElement("p")
+    p.classList.add("MessageList__item-meta")
+    p.textContent = "Post by " + created_by + " on " + inserted_at
+    li.appendChild(p)
+  }
+}
+
 channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
+  .receive("ok", resp => { resp.messages.forEach(renderMessage) })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
 export default socket

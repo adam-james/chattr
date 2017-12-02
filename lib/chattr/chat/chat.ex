@@ -120,7 +120,7 @@ defmodule Chattr.Chat do
 
   """
   def list_messages(topic_id) when is_integer(topic_id) do
-    query = from m in Message, where: m.topic_id == ^topic_id
+    query = from m in Message, where: m.topic_id == ^topic_id, order_by: m.id
     query
     |> Repo.all()
     |> Repo.preload(:user)

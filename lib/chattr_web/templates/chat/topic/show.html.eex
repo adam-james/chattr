@@ -1,10 +1,21 @@
+<div style="display:none;">
 <h2><%= @topic.title %></h2>
 <p><%= @topic.description %></p>
 <p>Created by: <%= owner_name(@topic) %></p>
 <div id="topic-id" style="display:none;" data-topic-id="<%= @topic.id %>"></div>
-
 <span><%= link "Edit", to: chat_topic_path(@conn, :edit, @topic) %></span> |
 <span><%= link "Back", to: chat_topic_path(@conn, :index) %></span>
+</div>
 
-<div id="messages"></div>
-<input type="text" id="chat-input">
+<ul class="MessageList" id="message-list"></ul>
+
+<footer class="ChatFooter">
+  <form
+    class="ChatForm"
+    action="#"
+    id="chat-form">
+
+    <input class="ChatForm__input" type="text" id="chat-input">
+    <input class="ChatForm__send-button" type="submit" value="Send">
+  </form>
+</footer>

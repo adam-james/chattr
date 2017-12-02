@@ -10,6 +10,7 @@ $color-white:   #fff;
 $color-gray:    #A6A6A6;
 $color-alert:   #D81616;
 $font-stack:      'Lato', sans-serif;
+$box-shadow:    0px 2px 4px $color-gray;
 
 body {
   font-family: $font-stack;
@@ -213,7 +214,7 @@ body {
     border-radius: 2px;
     margin-bottom: 1em;
     text-align: center;
-    box-shadow: 0px 2px 4px $color-gray;
+    box-shadow: $box-shadow;
   }
 
   &__topic-link {
@@ -234,5 +235,77 @@ body {
 
   &__username {
     font-weight: 700;
+  }
+}
+
+.ChatFooter {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 1em;
+  background-color: $color-primary;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ChatForm {
+
+  display: flex;
+  justify-content: space-between;
+
+  &__input {
+    padding: 0.5em;
+    border: 1px;
+    border-radius: 4px;
+    width: 65%;
+  }
+
+  &__send-button {
+    width: 25%;
+    color: $color-primary;
+    background-color: $color-white;
+    border: 1px;
+    border-radius: 4px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.MessageList {
+  margin-bottom: 100px;
+  list-style: none;
+  padding: 0 1em;
+  font-weight: 300;
+
+  &__item {
+    box-shadow: $box-shadow;
+    padding: 0.75em;
+    margin-bottom: 0.75em;
+
+    border: 1px solid $color-gray;
+    border-radius: 1rem 1rem 1rem 0;
+  }
+
+  &__item-body {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+  }
+
+  &__item-meta {
+    font-size: 0.9rem;
+    margin: 0;
+    color: $color-primary;
+  }
+
+  &__item:nth-child(2n + 1) {
+    background-color: $color-primary;
+    color: $color-white;
+    border-radius: 1rem 1rem 0 1rem;
+
+    & .MessageList__item-meta {
+      color: $color-white;
+    }
   }
 }
