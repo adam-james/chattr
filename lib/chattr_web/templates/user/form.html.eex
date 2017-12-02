@@ -1,25 +1,25 @@
-<%= form_for @changeset, @action, [class: "AccountForm"], fn f -> %>
+<%= form_for @changeset, @action, [class: "Form"], fn f -> %>
   <%= if @changeset.action do %>
-    <div class="AccountForm__global-alert">
+    <div class="Form__global-alert">
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
 
-  <div class="AccountForm__form-group">
-    <%= label f, :username, class: "AccountForm__label" %>
-    <%= text_input f, :username, class: "AccountForm__input" %>
-    <%= error_tag f, :username, "AccountForm__alert" %>
+  <div class="Form__form-group">
+    <%= label f, :username, class: "Form__label" %>
+    <%= text_input f, :username, class: "Form__input" %>
+    <%= error_tag f, :username, "Form__alert" %>
   </div>
 
-  <div class="AccountForm__form-group">
+  <div class="Form__form-group">
     <%= inputs_for f, :credential, fn cf -> %>
-      <%= label cf, :email, class: "AccountForm__label" %>
-      <%= text_input cf, :email, class: "AccountForm__input" %>
-      <%= error_tag cf, :email, "AccountForm__alert" %>
+      <%= label cf, :email, class: "Form__label" %>
+      <%= text_input cf, :email, class: "Form__input" %>
+      <%= error_tag cf, :email, "Form__alert" %>
     <% end %>
   </div>
 
-  <div class="AccountForm__form-group">
-    <%= submit "Submit", class: "AccountForm__submit" %>
+  <div class="Form__form-group">
+    <%= submit "Submit", class: "Form__submit" %>
   </div>
 <% end %>

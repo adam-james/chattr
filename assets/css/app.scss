@@ -110,7 +110,7 @@ body {
   }
 }
 
-@mixin centeredHeading() {
+.centered-heading {
   text-align: center;
   font-weight: 400;
   margin-top: 2em;
@@ -120,7 +120,7 @@ body {
 .Account {
 
   &__heading {
-    @include centeredHeading();
+    @extend .centered-heading;
   }
 
   &__login-callout, &__signup-callout {
@@ -133,7 +133,7 @@ body {
   }
 }
 
-.AccountForm {
+.Form {
   padding: 0 1em;
 
   &__form-group {
@@ -188,7 +188,7 @@ body {
 .TopicIndex {
 
   &__heading {
-    @include centeredHeading();
+    @extend .centered-heading;
     
     margin-top: 1em;
     margin-bottom: 1em;    

@@ -1,18 +1,18 @@
 <h2 class="Account__heading">Sign in</h2>
 
-<%= form_for @conn, session_path(@conn, :create), [method: :post, as: :user, class: "AccountForm"], fn f -> %>
-  <div class="AccountForm__form-group">
-    <%= label f, :email, class: "AccountForm__label" %>
-    <%= text_input f, :email, class: "AccountForm__input" %>
+<%= form_for @conn, session_path(@conn, :create), [method: :post, as: :user, class: "Form"], fn f -> %>
+  <div class="Form__form-group">
+    <%= label f, :email, class: "Form__label" %>
+    <%= text_input f, :email, class: "Form__input" %>
   </div>
 
-  <div class="AccountForm__form-group">
-    <%= label f, :password, class: "AccountForm__label" %>
-    <%= password_input f, :password, class: "AccountForm__input" %>
+  <div class="Form__form-group">
+    <%= label f, :password, class: "Form__label" %>
+    <%= password_input f, :password, class: "Form__input" %>
   </div>
 
-  <div class="AccountForm__form-group">
-    <%= submit "Log In", class: "AccountForm__submit" %>
+  <div class="Form__form-group">
+    <%= submit "Log In", class: "Form__submit" %>
   </div>
 <% end %>
 
@@ -21,7 +21,7 @@
 </p>
 
 <%= form_for @conn, session_path(@conn, :delete), [method: :delete, as: :user], fn _ -> %>
-  <div class="AccountForm__form-group">
+  <div class="Form__form-group">
     <%= submit "Log Out", class: "btn btn-warning" %>
   </div>
 <% end %>
