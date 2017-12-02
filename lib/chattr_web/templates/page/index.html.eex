@@ -1,6 +1,6 @@
 <div class="LandingCallout">
   <h2 class="LandingCallout__welcome-message">Welcome to Chattr!</h2>
-  <p class="LandingCallout__lead">A place to discuss things.</p>
+  <p class="LandingCallout__lead slide-up" id="landing-lead">A place to discuss things.</p>
   <%= link "Sign Up", to: user_path(@conn, :new), class: "LandingCallout__signup-link" %>
   <%= link "Log In", to: session_path(@conn, :new), class: "LandingCallout__login-link" %>
 </div>
