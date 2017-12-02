@@ -6,7 +6,7 @@ defmodule Chattr.Chat do
   import Ecto.Query, warn: false
   alias Chattr.Repo
 
-  alias Chattr.Chat.Topic
+  alias Chattr.Chat.{Topic, Message}
   alias Chattr.Accounts.User
 
   @doc """
@@ -108,5 +108,41 @@ defmodule Chattr.Chat do
   """
   def change_topic(%Topic{} = topic) do
     Topic.changeset topic, %{}
+  end
+
+  @doc """
+  Returns a list of messages for a given topic id. Preloads users.
+
+  ## Examples
+
+      iex> list_messages(123)
+      [%Message{}, ...]
+
+  """
+  def list_messages(topic_id) when is_integer(topic_id) do
+    query = from m in Message, where: m.topic_id == ^topic_id
+    query
+    |> Repo.all()
+    |> Repo.preload(:user)
+  end
+
+  @doc """
+  Creates a message.
+
+  ## Examples
+
+      iex> create_message(%User{}, %Topic{}, %{field: value})
+      {:ok, %Message{}}
+
+      iex> create_message(%User{}, %Topic{}, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_message(%User{} = user, %Topic{} = topic, attrs \\ %{}) do
+    %Message{}
+    |> Message.changeset(attrs)
+    |> Ecto.Changeset.put_change(:user_id, user.id)
+    |> Ecto.Changeset.put_change(:topic_id, topic.id)
+    |> Repo.insert()
   end
 end

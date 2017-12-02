@@ -2,11 +2,17 @@ defmodule ChattrWeb.TopicChannel do
   use Phoenix.Channel
 
   alias Chattr.Accounts
+  alias Chattr.Chat
+  alias ChattrWeb.Chat.MessageView
   
   def join("topic:" <> topic_id, _params, socket) do
     topic_id = String.to_integer topic_id
-    resp = %{topic_id: topic_id}
-    {:ok, resp, socket}
+
+    messages = Chat.list_messages(topic_id)
+    messages = Phoenix.View.render_many(messages, MessageView, "message.json")
+    resp = %{messages: messages}
+
+    {:ok, resp, assign(socket, :topic_id, topic_id)}
   end
 
   def handle_in(event, params, socket) do
@@ -14,8 +20,14 @@ defmodule ChattrWeb.TopicChannel do
     handle_in(event, params, user, socket)
   end
 
-  def handle_in("new_msg", %{"body" => body}, user, socket) do
-    resp = %{body: body, user: user.username}
+  def handle_in(event, params, user, socket) do
+    topic = Chat.get_topic! socket.assigns.topic_id
+    handle_in(event, params, user, topic, socket)
+  end
+
+  def handle_in("new_msg", %{"body" => body}, user, topic, socket) do
+    {:ok, message} = Chat.create_message(user, topic, %{body: body})
+    resp = MessageView.render("message.json", user, %{message: message})
     broadcast! socket, "new_msg", resp
     {:noreply, socket}
   end
