@@ -299,7 +299,7 @@ body {
     color: $color-primary;
   }
 
-  &__item:nth-child(2n + 1) {
+  &__item:nth-child(2n) {
     background-color: $color-primary;
     color: $color-white;
     border-radius: 1rem 1rem 0 1rem;
