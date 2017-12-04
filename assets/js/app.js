@@ -28,8 +28,37 @@ function slideUpLead() {
   }, 500)
 }
 
+function chatMeta() {
+  let metaElem = document.querySelector('.TopicMeta')
+  let headerHeight = document.querySelector('.GlobalHeader').clientHeight
+  let metaFixed = (window.pageYOffset > headerHeight)
+  let fixedClassName = 'TopicMeta--fixed'
+
+  window.addEventListener('scroll', handleScroll)
+
+  function handleScroll() {
+    if (shouldBeFixed() && !metaFixed) fixMeta()
+    if (!shouldBeFixed() && metaFixed) unFixMeta()
+  }
+
+  function shouldBeFixed() {
+    return window.pageYOffset > headerHeight
+  }
+
+  function fixMeta() {
+    metaFixed = true
+    metaElem.classList.add(fixedClassName)
+  }
+
+  function unFixMeta() {
+    metaFixed = false
+    metaElem.classList.remove(fixedClassName)
+  }
+}
+
 if (window.location.pathname === '/') {
   slideUpLead()
 } else if (/\/chat\/topics\/[0-9]+/.test(location.pathname)) {
   chat()
+  chatMeta()
 }

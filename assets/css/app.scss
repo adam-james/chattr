@@ -321,6 +321,14 @@ body {
   padding: 1em;
   text-align: center;
 
+  &--fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: 0;
+    background-color: $color-white;
+  }
+
   &__title {
     margin: 0;
     margin-bottom: 0.25em;    
