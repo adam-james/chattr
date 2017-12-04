@@ -27,8 +27,13 @@ export function chat() {
   })
   
   channel.on("new_msg", payload => {
+    scrollToBottom()    
     renderNewMessage(payload)
   })
+
+  function scrollToBottom() {
+    window.scroll(0, document.body.clientHeight)
+  }
   
   function renderMessage({inserted_at, created_by, body}) {
     let li = document.createElement("li")
