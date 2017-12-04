@@ -320,6 +320,7 @@ body {
   border-radius: 2px;
   padding: 1em;
   text-align: center;
+  box-sizing: border-box;
 
   &--fixed {
     position: fixed;
