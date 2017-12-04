@@ -26,9 +26,13 @@ defmodule ChattrWeb.TopicChannel do
   end
 
   def handle_in("new_msg", %{"body" => body}, user, topic, socket) do
-    {:ok, message} = Chat.create_message(user, topic, %{body: body})
-    resp = MessageView.render("message.json", user, %{message: message})
-    broadcast! socket, "new_msg", resp
-    {:noreply, socket}
+    case Chat.create_message(user, topic, %{body: body}) do
+      {:ok, message} ->
+        resp = MessageView.render("message.json", user, %{message: message})
+        broadcast! socket, "new_msg", resp
+        {:reply, :ok, socket}
+      {:error, _changeset} ->
+        {:reply, :error, socket}
+    end
   end
 end
