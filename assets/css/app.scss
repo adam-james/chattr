@@ -309,3 +309,31 @@ body {
     }
   }
 }
+
+.TopicMeta {
+
+  width: 100%;
+  border: 1px solid $color-gray;
+  box-shadow: $box-shadow;
+  position: relative;
+  margin-top: 0.75em;
+  border-radius: 2px;
+  padding: 1em;
+  text-align: center;
+
+  &__title {
+    margin: 0;
+    margin-bottom: 0.25em;    
+    font-weight: 300;
+  }
+
+  &__owner {
+    margin: 0;
+    font-weight: 300;
+    color: $color-primary;
+  }
+
+  &__username {
+    font-weight: 400;
+  }
+}

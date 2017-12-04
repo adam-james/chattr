@@ -1,11 +1,11 @@
-<div style="display:none;">
-<h2><%= @topic.title %></h2>
-<p><%= @topic.description %></p>
-<p>Created by: <%= owner_name(@topic) %></p>
+<header class="TopicMeta">
+  <h2 class="TopicMeta__title"><%= @topic.title %></h2>
+  <p class="TopicMeta__owner">
+    Created by <span class="TopicMeta__username"><%= owner_name(@topic) %></span>
+  </p>
+</header>
+
 <div id="topic-id" style="display:none;" data-topic-id="<%= @topic.id %>"></div>
-<span><%= link "Edit", to: chat_topic_path(@conn, :edit, @topic) %></span> |
-<span><%= link "Back", to: chat_topic_path(@conn, :index) %></span>
-</div>
 
 <ul class="MessageList" id="message-list"></ul>
 
