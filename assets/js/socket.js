@@ -27,7 +27,7 @@ export function chat() {
   })
   
   channel.on("new_msg", payload => {
-    renderMessage(payload)
+    renderNewMessage(payload)
   })
   
   function renderMessage({inserted_at, created_by, body}) {
@@ -50,6 +50,16 @@ export function chat() {
       p.textContent = "Post by " + created_by + " on " + inserted_at
       li.appendChild(p)
     }
+
+    return li
+  }
+
+  function renderNewMessage(messageParams) {
+    let li = renderMessage(messageParams)
+    li.classList.add('slide-up')
+    setTimeout(function() {
+      li.classList.add('slide-up--visible')
+    }, 100)
   }
   
   channel.join()
