@@ -4,6 +4,15 @@
     <p class="TopicMeta__owner">
       Created by <span class="TopicMeta__username"><%= owner_name(@topic) %></span>
     </p>
+    <%= if assigns.current_user.id == @topic.user_id do %>
+      <div class="TopicMeta__links-container">
+        <%= link "Edit", to: chat_topic_path(@conn, :edit, @topic), class: "TopicMeta__link" %> |
+        <%= link "Delete", to: chat_topic_path(@conn, :delete, @topic), 
+                           method: :delete, 
+                           data: [confirm: "Are you sure?"], 
+                           class: "TopicMeta__link" %>
+      </div>
+    <% end %>
   </header>
 </section>
 

@@ -350,6 +350,14 @@ body {
   &__username {
     font-weight: 400;
   }
+
+  &__links-container {
+    margin-top: 0.5em;
+  }
+
+  &__link {
+    color: $color-primary;
+  }
 }
 
 .NavMenu {
