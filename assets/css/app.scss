@@ -372,6 +372,7 @@ body {
     color: $color-white;
     background-color: $color-primary;
     border-radius: 0 0 0.5em 0;
+    text-align: center;
 
     &:hover {
       cursor: pointer;
@@ -379,7 +380,9 @@ body {
   }
 
   &__nav {
-    display: none;
+    transform: translateX(-300px);
+    transition-property: transform;
+    transition-duration: 0.75s;
     margin-top: -1rem;
   }
 
@@ -403,7 +406,7 @@ body {
   &--open {
 
     & .NavMenu__nav {
-      display: block;
+      transform: translateX(0);
     }
   }
 }
