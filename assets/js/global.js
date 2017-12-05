@@ -7,17 +7,24 @@ function hamburgerMenu() {
   var toggleElem = document.getElementById('hamburger-toggle')
   var openClassName = 'NavMenu--open'
 
-  toggleElem.addEventListener('click', handleToggle)
+  toggleElem.addEventListener('click', handleOpen)
 
-  function handleToggle() {
-    if (isOpen()) {
-      return closeMenu()
-    }
+  function handleOpen() {
     openMenu()
+    setTimeout(() => {
+      toggleElem.removeEventListener('click', handleOpen)
+      window.addEventListener('click', handleClose)
+    }, 0)
+  }
+
+  function handleClose() {
+    window.removeEventListener('click', handleClose)
+    toggleElem.addEventListener('click', handleOpen)
+    closeMenu()
   }
 
   function openMenu() {
-    rootElem.classList.add(openClassName)    
+    rootElem.classList.add(openClassName)
   }
 
   function closeMenu() {
