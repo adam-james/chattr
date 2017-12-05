@@ -15,7 +15,6 @@ import "phoenix_html"
 import global from './global'
 import landingPage from './landing_page'
 import showTopic from './show_topic'
-import { chat } from "./socket"
 
 app()
 
@@ -26,6 +25,5 @@ function app() {
     landingPage()
   } else if (/^\/chat\/topics\/[0-9]+$/.test(location.pathname)) {
     showTopic()
-    chat()
   }
 }

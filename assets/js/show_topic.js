@@ -1,18 +1,24 @@
+import { chat } from "./socket"
+
 export default function showTopic() {
   chatMeta()
+  chat()
 }
 
 function chatMeta() {
   let metaHeaderElem = document.querySelector('.TopicMeta__header')
   let headerHeight = document.querySelector('.GlobalHeader').clientHeight
-  let metaFixed = (window.pageYOffset > headerHeight)
   let fixedClassName = 'TopicMeta__header--fixed'
 
   window.addEventListener('scroll', handleScroll)
 
   function handleScroll() {
-    if (shouldBeFixed() && !metaFixed) fixMeta()
-    if (!shouldBeFixed() && metaFixed) unFixMeta()
+    if (shouldBeFixed() && !isFixed()) fixMeta()
+    if (!shouldBeFixed() && isFixed()) unFixMeta()
+  }
+
+  function isFixed() {
+    return metaHeaderElem.classList.contains(fixedClassName)
   }
 
   function shouldBeFixed() {
@@ -20,12 +26,10 @@ function chatMeta() {
   }
 
   function fixMeta() {
-    metaFixed = true
     metaHeaderElem.classList.add(fixedClassName)
   }
 
   function unFixMeta() {
-    metaFixed = false
     metaHeaderElem.classList.remove(fixedClassName)
   }
 }
