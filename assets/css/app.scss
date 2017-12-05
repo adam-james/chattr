@@ -351,3 +351,51 @@ body {
     font-weight: 400;
   }
 }
+
+.NavMenu {
+  position: fixed;
+  left: -1px;
+  top: -1px;
+  z-index: 200;
+
+  &__toggle {
+    font-size: 2rem;
+    padding: 0.2em 0.5em;
+    color: $color-white;
+    background-color: $color-primary;
+    border-radius: 0 0 0.5em 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__nav {
+    display: none;
+    margin-top: -1rem;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $color-white;
+    display: block;
+    height: 100%;
+    padding: 1.5em 1.75em;
+    background-color: $color-primary;
+    border-bottom: 1px solid $color-white;
+    border-top: 1px solid $color-white;
+    font-weight: 300;
+  }
+
+  &--open {
+
+    & .NavMenu__nav {
+      display: block;
+    }
+  }
+}

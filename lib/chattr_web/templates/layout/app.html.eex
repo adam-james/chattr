@@ -9,15 +9,37 @@
 
     <title>Hello Chattr!</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <script src="https://use.fontawesome.com/77e4dc92f9.js"></script>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
+
     <header class="GlobalHeader">
       <h1 class="GlobalHeader__brand">
         <a href="/" class="GlobalHeader__brand-link">Chattr</a>
       </h1>
     </header>
+
+    <section class="NavMenu">
+      <div class="NavMenu__toggle" id="hamburger-toggle">
+        <i class="NavMenu__hamburger fa fa-bars"></i>
+      </div>
+      <nav class="NavMenu__nav">
+        <ul class="NavMenu__list">
+          <li class="NavMenu__list-item">
+            <%= link "Chat Topics", to: chat_topic_path(@conn, :index), class: "NavMenu__link" %>
+          </li>
+          <li class="NavMenu__list-item">
+            <%= link "New Topic", to: chat_topic_path(@conn, :new), class: "NavMenu__link" %>
+          </li>
+          <li class="NavMenu__list-item">
+            <%= link "Log Out", to: session_path(@conn, :delete), method: "delete", class: "NavMenu__link" %>
+          </li>
+        </ul>
+      </nav>
+    </section>
+
     <div class="container">
 
       <%= if get_flash(@conn, :info) do %>
