@@ -29,10 +29,10 @@ function slideUpLead() {
 }
 
 function chatMeta() {
-  let metaElem = document.querySelector('.TopicMeta')
+  let metaHeaderElem = document.querySelector('.TopicMeta__header')
   let headerHeight = document.querySelector('.GlobalHeader').clientHeight
   let metaFixed = (window.pageYOffset > headerHeight)
-  let fixedClassName = 'TopicMeta--fixed'
+  let fixedClassName = 'TopicMeta__header--fixed'
 
   window.addEventListener('scroll', handleScroll)
 
@@ -47,12 +47,12 @@ function chatMeta() {
 
   function fixMeta() {
     metaFixed = true
-    metaElem.classList.add(fixedClassName)
+    metaHeaderElem.classList.add(fixedClassName)
   }
 
   function unFixMeta() {
     metaFixed = false
-    metaElem.classList.remove(fixedClassName)
+    metaHeaderElem.classList.remove(fixedClassName)
   }
 }
 

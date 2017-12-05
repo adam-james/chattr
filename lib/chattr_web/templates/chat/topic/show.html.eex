@@ -1,9 +1,11 @@
-<header class="TopicMeta">
-  <h2 class="TopicMeta__title"><%= @topic.title %></h2>
-  <p class="TopicMeta__owner">
-    Created by <span class="TopicMeta__username"><%= owner_name(@topic) %></span>
-  </p>
-</header>
+<section class="TopicMeta">
+  <header class="TopicMeta__header">
+    <h2 class="TopicMeta__title"><%= @topic.title %></h2>
+    <p class="TopicMeta__owner">
+      Created by <span class="TopicMeta__username"><%= owner_name(@topic) %></span>
+    </p>
+  </header>
+</section>
 
 <div id="topic-id" style="display:none;" data-topic-id="<%= @topic.id %>"></div>
 

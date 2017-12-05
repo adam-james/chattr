@@ -312,23 +312,27 @@ body {
 
 .TopicMeta {
 
-  width: 100%;
-  border: 1px solid $color-gray;
-  box-shadow: $box-shadow;
-  position: relative;
   margin-top: 0.75em;
-  border-radius: 2px;
-  padding: 1em;
-  text-align: center;
-  box-sizing: border-box;
+  min-height: 96px;  
 
-  &--fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    margin-top: 0;
-    background-color: $color-white;
-    z-index: 100;
+  &__header {
+    width: 100%;
+    border: 1px solid $color-gray;
+    box-shadow: $box-shadow;
+    position: relative;
+    border-radius: 2px;
+    padding: 1em;
+    text-align: center;
+    box-sizing: border-box;
+
+    &--fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      margin-top: 0;
+      background-color: $color-white;
+      z-index: 100;
+    }
   }
 
   &__title {
