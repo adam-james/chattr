@@ -1,0 +1,24 @@
+.ChatForm {
+  
+  display: flex;
+  justify-content: space-between;
+
+  &__input {
+    padding: 0.5em;
+    border: 1px;
+    border-radius: 4px;
+    width: 65%;
+  }
+
+  &__send-button {
+    width: 25%;
+    color: $color-primary;
+    background-color: $color-white;
+    border: 1px;
+    border-radius: 4px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

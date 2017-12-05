@@ -1,0 +1,33 @@
+.TopicList {
+  
+  list-style: none;
+  padding: 0;
+
+  &__item {
+    border: 1px solid $color-gray;
+    border-radius: 2px;
+    margin-bottom: 1em;
+    text-align: center;
+    box-shadow: $box-shadow;
+  }
+
+  &__topic-link {
+    text-decoration: none;
+    padding: 1em;    
+    display: block;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    color: $color-text;
+  }
+
+  &__owner {
+    display: block;
+    @include link();
+    margin-top: 0.25em;
+  }
+
+  &__username {
+    font-weight: 700;
+  }
+}

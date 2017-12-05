@@ -1,0 +1,15 @@
+.Account {
+  
+  &__heading {
+    @extend .centered-heading;
+  }
+
+  &__login-callout, &__signup-callout {
+    text-align: center;
+    margin-top: 2em;
+  }
+
+  &__login-link, &__signup-link {
+    @include link();
+  }
+}

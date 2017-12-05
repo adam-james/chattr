@@ -1,0 +1,51 @@
+.Form {
+  padding: 0 1em;
+
+  &__form-group {
+    margin-bottom: 0.75em;
+  }  
+
+  &__label {
+    display: block;
+    margin-bottom: 0.25em;
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    padding: 0.4em;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid $color-gray;
+  }
+
+  &__submit {
+    @include roundButton();
+
+    width: 100%;
+    border: 1px solid $color-primary;
+    background-color: $color-primary;
+    color: $color-white;
+    margin-top: 1em;
+  }
+
+  &__submit:hover {
+    cursor: pointer;
+  }
+
+  &__global-alert {
+    border: 1px solid $color-alert;
+    color: $color-alert;
+    padding: 0 1em;
+    margin-bottom: 0.5em;
+    border-radius: 2px;
+  }
+
+  &__alert {
+    border: 1px solid $color-alert;
+    color: $color-alert;
+    padding: 0.5em 1em;
+    margin-top: 0.5em;
+    border-radius: 2px;    
+  }
+}

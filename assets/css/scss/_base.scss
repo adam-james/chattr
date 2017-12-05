@@ -1,0 +1,42 @@
+body {
+  font-family: $font-stack;
+  font-size: 18px;
+  color: $color-text;
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition-property: opacity, transform;
+  transition-duration: 0.5s, 1s;
+
+  &--visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.alert {
+  text-align: center;
+  padding: 0.65em;
+  border-radius: 1em;
+}
+
+.alert-info {
+  color: $color-primary;
+  border: 1px solid $color-primary;
+  background-color: lighten($color-primary, 55%);
+}
+
+.alert-danger {
+  color: $color-alert;
+  border: 1px solid $color-alert;
+  background-color: lighten($color-alert, 45%);  
+}
+
+.centered-heading {
+  text-align: center;
+  font-weight: 400;
+  margin-top: 2em;
+  margin-bottom: 1.5em;
+}

@@ -1,0 +1,19 @@
+.GlobalHeader {
+  
+  background-color: $color-primary;
+  color: $color-white;
+  text-align: center;
+  padding-top: 0.5em;
+  padding-bottom: 0.75em;
+
+  &__brand {
+    margin: 0;
+    font-weight: 300;
+    font-size: 1.5rem;
+  }
+
+  &__brand-link {
+    text-decoration: none;
+    color: $color-white;
+  }
+}

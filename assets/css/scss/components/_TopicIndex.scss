@@ -1,0 +1,17 @@
+.TopicIndex {
+  
+  &__heading {
+    @extend .centered-heading;
+    
+    margin-top: 1em;
+    margin-bottom: 1em;    
+  }
+
+  &__new-link {
+    @include roundButton();
+
+    background-color: $color-primary;
+    color: $color-white;
+    width: 100%;
+  }
+}

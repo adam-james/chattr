@@ -1,0 +1,15 @@
+@mixin roundButton() {
+  padding-top: 0.5em;
+  padding-bottom: 0.75em;
+  text-decoration: none;
+  width: 70%;
+  margin: 0 auto;
+  display: block;
+  border-radius: 100px;
+  font-weight: 300;
+  text-align: center;  
+}
+
+@mixin link() {
+  color: $color-primary;
+}
