@@ -1,9 +1,10 @@
 export default function global() {
-  hamburgerMenu()
+  let navMenu = document.querySelector('.NavMenu')
+  if (navMenu) hamburgerMenu(navMenu)
 }
 
-function hamburgerMenu() {
-  var rootElem = document.querySelector('.NavMenu')
+function hamburgerMenu(root) {
+  var rootElem = root
   var toggleElem = document.getElementById('hamburger-toggle')
   var openClassName = 'NavMenu--open'
 
