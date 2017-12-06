@@ -19,9 +19,3 @@
 <p class="Account__signup-callout">
   Don't have an account? <%= link "Sign up", to: user_path(@conn, :new), class: "Account__signup-link" %>
 </p>
-
-<%= form_for @conn, session_path(@conn, :delete), [method: :delete, as: :user], fn _ -> %>
-  <div class="Form__form-group">
-    <%= submit "Log Out", class: "btn btn-warning" %>
-  </div>
-<% end %>
