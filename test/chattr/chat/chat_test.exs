@@ -30,7 +30,7 @@ defmodule Chattr.ChatTest do
     end
 
     test "list_topics/0 returns all topics" do
-      topic = topic_fixture()
+      topic = topic_fixture() |> Repo.preload(:user)
       topics = Chat.list_topics()
       assert topics == [topic]
     end

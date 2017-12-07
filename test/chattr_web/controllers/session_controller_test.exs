@@ -24,7 +24,7 @@ defmodule ChattrWeb.SessionControllerTest do
 
     test "redirects when login data is valid", %{conn: conn, user: user} do
       conn = post conn, session_path(conn, :create), user: @valid_login
-      assert redirected_to(conn) == page_path(conn, :index)
+      assert redirected_to(conn) == chat_topic_path(conn, :index)
       assert get_session(conn, :user_id) == user.id
     end
 

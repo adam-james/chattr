@@ -95,7 +95,8 @@ defmodule ChattrWeb.Chat.TopicControllerTest do
 
     test "lists all topics when user", %{conn: conn} do
       conn = get conn, chat_topic_path(conn, :index)
-      assert html_response(conn, 200) =~ "Listing Topics"
+      assert html_response(conn, 200) =~ "Your Topics"
+      assert html_response(conn, 200) =~ "Other Topics"
     end
 
     test "new renders form when user", %{conn: conn} do
@@ -110,7 +111,7 @@ defmodule ChattrWeb.Chat.TopicControllerTest do
       assert redirected_to(conn) == chat_topic_path(conn, :show, id)
 
       conn = get conn, chat_topic_path(conn, :show, id)     
-      assert html_response(conn, 200) =~ "Created by: #{user.username}"
+      assert html_response(conn, 200) =~ "Created by <span class=\"TopicMeta__username\">#{user.username}</span>"
     end
 
     test "create renders errors when data is invalid", %{conn: conn} do
@@ -130,7 +131,7 @@ defmodule ChattrWeb.Chat.TopicControllerTest do
       assert redirected_to(conn) == chat_topic_path(conn, :show, topic)
 
       conn = get conn, chat_topic_path(conn, :show, topic)
-      assert html_response(conn, 200) =~ "updated description"
+      assert html_response(conn, 200) =~ "updated title"
     end
 
     test "update renders errors when data is invalid", %{conn: conn, user: user} do
