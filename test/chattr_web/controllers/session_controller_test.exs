@@ -44,7 +44,9 @@ defmodule ChattrWeb.SessionControllerTest do
         |> delete(session_path(conn, :delete))
 
       assert redirected_to(conn) == page_path(conn, :index)
-      # TODO: figure out why this doesn't work
+      
+      # You have to make another request for `:user_id` to be dropped from session.
+      conn = get conn, page_path(conn, :index)
       refute get_session(conn, :user_id)
     end
   end
